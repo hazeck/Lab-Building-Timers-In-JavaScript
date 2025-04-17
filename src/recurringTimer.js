@@ -23,10 +23,26 @@
  * stopRecurringTimer(timerId); // Stops the recurring timer started with the given ID.
  */
 function recurringTimer(message, interval) {
-  // Set up a timer using setInterval to log the message
-  // Return the timer ID
+  // Set up a recurring timer
+  const timerId = setInterval(() => {
+    console.log(message);
+  }, interval);
+
+  // Return the timer ID for stopping the timer later
+  return timerId;
 }
 
 function stopRecurringTimer(timerId) {
   // Stop the timer using clearInterval
+  clearInterval(timerId);
+  console.log("Timer stopped.");
 }
+
+// Example usage
+const timerId = recurringTimer("Hello, world!", 1000); // Logs "Hello, world!" every second
+
+// Stop the timer after 5 seconds
+setTimeout(() => {
+  stopRecurringTimer(timerId);
+}, 5000);
+
